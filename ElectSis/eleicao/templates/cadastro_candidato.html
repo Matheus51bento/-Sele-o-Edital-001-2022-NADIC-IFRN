@@ -4,12 +4,91 @@
 
 {% block links %}
 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}">
 
 {% endblock %}
 
 {% block content %}
 
-<h1>candidato</h1>
+<div class="auth-content col-12 col-sm-8 col-md-6 col-lg-4 p-2">
+    <form method="POST">
+
+            {% csrf_token %}
+
+            <h3>Cadastro Candidato</h3>
+
+            <div class="fieldWrapper">
+                <div class="error-messages">
+
+                </div>
+                <div class="form-group">
+                    <input type="text" name="nome" maxlength="255" placeholder="Digite o nome completo"
+                           class="form-control" required="" id="id_nome">
+                </div>
+            </div>
+
+            <div class="fieldWrapper">
+                <div class="error-messages">
+
+                </div>
+                <div class="form-group">
+                    <input type="date" name="data_nascimento" class="form-control" placeholder="Data de Nascimento"
+                           required="" id="id_data_nascimento">
+                </div>
+            </div>
+
+            <div class="fieldWrapper">
+                <div class="error-messages">
+
+                </div>
+                <div class="form-group">
+                    <input type="text" name="endereco" maxlength="255" placeholder="Digite o endereço"
+                           class="form-control" required="" id="id_endereco">
+                </div>
+            </div>
+
+            <div class="fieldWrapper">
+                <div class="error-messages">
+
+                </div>
+                <div class="form-group">
+                    <input type="text" name="cpf" value="000.000.000-00" maxlength="14" placeholder="Digite o CPF"
+                           class="form-control" required="" id="id_cpf">
+                </div>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary" type="submit">Cadastrar</button>
+            </div>
+        <!--        {% csrf_token %}-->
+        <!--        <h3>Cadastro Candidato</h3>-->
+        <!--       {% for field in form %}-->
+        <!--        <div class="fieldWrapper">-->
+        <!--            <div class="error-messages">-->
+        <!--                {{ field.errors }}-->
+        <!--            </div>-->
+        <!--            <div class="form-group">-->
+        <!--                {{ field }}-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--        {% endfor %}-->
+
+
+        <!--        {% for field in formMore %}-->
+        <!--        <div class="fieldWrapper">-->
+        <!--            <div class="error-messages">-->
+        <!--                {{ field.errors }}-->
+        <!--            </div>-->
+        <!--            <div class="form-group">-->
+        <!--                {{ field }}-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--        {% endfor %}-->
+
+        <!--        <div class="d-grid gap-2">-->
+        <!--            <button class="btn btn-primary" type="submit">Cadastrar</button>-->
+        <!--        </div>-->
+    </form>
+</div>
 
 {% endblock %}

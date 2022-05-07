@@ -1,8 +1,13 @@
-#card-cadastro {
+.card-impar {
     background-color: #417D7A;
     color: #EDE6DB;
     box-shadow: 0px 10px 16px -2px rgba(0, 0, 0, 0.1);
+}
 
+.card-par {
+    background-color: #1A3C40;
+    color: #EDE6DB;
+    box-shadow: 0px 10px 16px -2px rgba(0, 0, 0, 0.1);
 }
 
 .container-fluid > a:hover{
@@ -10,7 +15,7 @@
     color: #EDE6DB;
 }
 
-.card-body, > a:hover{
+.card-body > a:hover{
 
     text-decoration: none;
     opacity: 0.8;
@@ -42,6 +47,12 @@
     color: #EDE6DB;
     border-color: #EDE6DB;
 
+}
+
+.botao-menu-par{
+    background-color: #417D7A;
+    color: #EDE6DB;
+    border-color: #EDE6DB;
 }
 
 .navs {
