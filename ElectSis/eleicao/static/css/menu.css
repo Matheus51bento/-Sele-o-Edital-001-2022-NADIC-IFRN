@@ -1,13 +1,60 @@
 #card-cadastro {
-    background-color: #0C2D48;
-    color: #B1D4E0;
+    background-color: #417D7A;
+    color: #EDE6DB;
     box-shadow: 0px 10px 16px -2px rgba(0, 0, 0, 0.1);
 
 }
 
+.container-fluid > a:hover{
+    text-decoration: none;
+    color: #EDE6DB;
+}
+
+.card-body, > a:hover{
+
+    text-decoration: none;
+    opacity: 0.8;
+    color: #EDE6DB;
+    background-color: #1A3C40;
+    border-color: #EDE6DB;
+
+}
+
+.navbar-brand{
+    color: #EDE6DB;
+}
+
+.nav-brand:hover{
+ color: #EDE6DB;
+}
+
+.nav-link {
+    color: #EDE6DB;
+}
+
+.nav-link:hover{
+ color: #EDE6DB;
+}
+
 .botao-menu {
 
-    background-color: #2E8BC0;
-    color: #0C2D48;
+    background-color: #1A3C40;
+    color: #EDE6DB;
+    border-color: #EDE6DB;
+
+}
+
+.navs {
+
+    width: 100%;
+    color: #EDE6DB;
+    background-color: #1D5C63;
+
+}
+
+.navs:a{
+
+    color: #EDE6DB;
+    text-decoration: none;
 
 }
