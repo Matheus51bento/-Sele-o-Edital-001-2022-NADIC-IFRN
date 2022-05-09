@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .forms import CandidatoForm
-from .models import Candidato
+from .forms import CandidatoForm, EleicaoForm
+from .models import Candidato, Eleicao
 from django.contrib import messages
 
 # Create your views here.
@@ -9,7 +9,34 @@ def index(request):
     return render(request, "menu.html")
 
 def cad_eleicao(request):
-    return render(request, "cadastro_eleicao.html")
+
+    candidatos = Candidato.objects.all()
+
+    if request.method == 'POST':
+
+        if "candidatos" in request.POST:
+            qtd = int(request.POST['qtd_candidatos'])
+            lis_candidatos = request.POST.getlist('candidatos')
+            print(request.POST)
+
+            if len(lis_candidatos) == qtd:
+
+                candidatos_form = candidatos.filter(cpf__in=lis_candidatos)
+                print(candidatos_form)
+
+            else:
+                messages.error(request, "A quantidade de candidatos está incorreta")
+
+        else:
+            messages.error(request, "Selecione os candidatos")
+
+
+        return render(request, "cadastro_eleicao.html", {'candidatos':candidatos})
+
+    else:
+        form = EleicaoForm()
+
+        return render(request, "cadastro_eleicao.html", {'form':form, 'candidatos':candidatos   })
 
 def cad_candidadto(request):
 
@@ -24,7 +51,7 @@ def cad_candidadto(request):
             endereco = forms.cleaned_data['endereco']
             cpf = forms.cleaned_data['cpf']
 
-            search = Candidato.objects.get(cpf=cpf)
+            search = Candidato.objects.filter(cpf=cpf)
 
             if not search:
 

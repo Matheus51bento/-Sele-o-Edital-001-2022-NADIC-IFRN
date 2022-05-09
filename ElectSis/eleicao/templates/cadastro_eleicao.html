@@ -10,6 +10,112 @@
 
 {% block content %}
 
-<h1>eleicao</h1>
+    {% if messages %}
+        <div class="messages " data-dismiss="alert" style="align-items: center; font-size: 0.9em;">
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    <div class="alert justify-content-between" role="alert" style="background-color: #179A51;">
+                        {{ message }}
+                    </div>
+                {% elif message.tags == 'warning' %}
+                    <div class="alert alert-warning" role="alert">
+                        {{ message }}
+                    </div>
+                {% elif message.tags == 'error' %}
+                    <div class="alert" role="alert" style="background-color: #E91C2B;">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="auth-content col-12 col-sm-8 col-md-6 col-lg-4 p-2">
+        <form method="POST">
+            {% csrf_token %}
+            <h3>Cadastrar Pleito</h3>
+
+            <div class="fieldWrapper">
+                <div class="error-messages">
+
+                </div>
+                <label>Nome do Pleito</label>
+                <div class="form-group">
+                    <input type="text" name="nome" maxlength="80" placeholder="Digite o nome do Pleito" required="" id="id_nome">
+                </div>
+            </div>
+
+            <br>
+
+            <div class="fieldWrapper">
+                <div class="error-messages">
+
+                </div>
+                <label>Data inicial</label>
+                <div class="form-group">
+                    <input type="date" name="data_inicial" class="form-control" placeholder="Data de inicio" required=""
+                           id="id_data_inicial">
+                </div>
+            </div>
+
+            <br>
+
+            <div class="fieldWrapper">
+                <div class="error-messages">
+
+                </div>
+                <label>Data Final</label>
+                <div class="form-group">
+                    <input type="date" name="data_final" class="form-control" placeholder="Data de fim" required=""
+                           id="id_data_final">
+                </div>
+            </div>
+
+            <br>
+
+            <div class="fieldWrapper">
+                <div class="error-messages">
+
+                </div>
+                <label>Qtd Candidatos</label>
+                <div class="form-group">
+                    <input type="number" name="qtd_candidatos" class="form-control" placeholder="Número de candidatos"
+                           required=""
+                           id="id_data_final">
+                </div>
+            </div>
+
+            <br><label>Candidatos</label>
+            <div class="card" style="padding: 10px">
+                <div class="fieldWrapper">
+
+                    <div class="form-group">
+
+                        <fieldset>
+
+                            {% for candidato in candidatos %}
+
+                                <input type="checkbox" name="candidatos" data-model-name="candidatos"
+                                       value="{{ candidato.cpf }}">
+                                <span style="padding-left: 10px">{{ candidato.nome }}</span>
+                                <hr>
+
+                            {% endfor %}
+
+                        </fieldset>
+
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary" type="submit">Cadastrar</button>
+            </div>
+
+        </form>
+
+    </div>
 
 {% endblock %}

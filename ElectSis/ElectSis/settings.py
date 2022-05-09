@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'eleicao',
     'cpf_field',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

@@ -18,5 +18,8 @@ class Eleicao(models.Model):
     nome = models.CharField(verbose_name="Nome da Eleição", max_length=80)
     data_inicial = models.DateField(verbose_name="Data Inicial")
     data_final = models.DateField(verbose_name="Data Final")
-    candidatos = models.ManyToManyField(Candidato)
+    candidatos = models.ManyToManyField(Candidato, blank=True)
     _total_candidatos = None
+
+    def __str__(self):
+        return '{}'.format(self.nome)
