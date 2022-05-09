@@ -10,44 +10,62 @@
 
 {% block content %}
 
-    <div class="d-flex justify-content-center" style="margin-top: 30px">
+    <div class="d-flex  justify-content-center m-2" style="margin-top: 30px">
 
         <div class="row">
 
-            <div class="col-4">
-                <div  class="card-impar card text-center" style="width: 18rem;">
+            <div class="col-6">
+                <div class="card-impar card text-center" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Cadastro Eleitoral<span class="material-icons" style="margin-left: 10px;">&#xea20;</span></h5>
+                        <h5 class="card-title"><span style="vertical-align: top;">Cadastro Eleitoral</span><span
+                                class="material-icons" style="margin-left: 10px;">&#xea20;</span></h5>
                         <p class="card-text">Aqui pode-se cadastrar tanto novas eleições como candidatos.</p>
                         <a href="{% url 'cadastro eleicao' %}" class="btn btn-primary botao-menu">Cadastrar</a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-4">
+            <div class="col-6">
                 <div class="card-par card text-center" style="width: 18rem;">
-                  <div class="card-body">
-                      <h5 class="card-title">Cadastro Candidatos<span class="material-icons" style="margin-left: 10px;">&#xe7f0;</span></h5>
-                    <p class="card-text">Aqui pode-se cadastras os candidatos de forma individual.</p>
-                    <a href="#" class="btn btn-primary botao-menu-par">Cadastrar</a>
-                  </div>
+                    <div class="card-body">
+                        <h5 class="card-title"><span style="vertical-align: top;">Cadastro Candidatos</span><span
+                                class="material-icons" style="margin-left: 10px;">&#xe7f0;</span></h5>
+                        <p class="card-text">Aqui pode-se cadastras os candidatos de forma individual.</p>
+                        <a href="#" class="btn btn-primary botao-menu-par">Cadastrar</a>
+                    </div>
                 </div>
-            </div>
-
-            <div class="col-4">
-
-                <div class="card text-center" style="width: 18rem;">
-                  <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-
             </div>
 
         </div>
 
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <div class="row">
+
+            <div class="col-6">
+                <div class="card-par card text-center" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><span style="vertical-align: top;">Votar</span><span
+                                class="material-icons" style="margin-left: 10px;">&#xe7f0;</span></h5>
+                        <p class="card-text">Aqui pode-se cadastras os candidatos de forma individual.</p>
+                        <a href="#" class="btn btn-primary botao-menu-par">Cadastrar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="card-par card text-center" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><span style="vertical-align: top;">Resultados</span><span
+                                class="material-icons" style="margin-left: 10px;">&#xe7f0;</span></h5>
+                        <p class="card-text">Aqui pode-se cadastras os candidatos de forma individual.</p>
+                        <a href="#" class="btn btn-primary botao-menu-par">Cadastrar</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 
 
