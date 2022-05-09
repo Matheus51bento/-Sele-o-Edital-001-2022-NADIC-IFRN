@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .forms import CandidatoForm
+from .models import Candidato
+from django.contrib import messages
 
 # Create your views here.
 
@@ -16,7 +18,24 @@ def cad_candidadto(request):
         forms = CandidatoForm(request.POST)
 
         if forms.is_valid():
-            print("VALIDOUUUUU")
+            # ['nome', 'data_nascimento', 'endereco', 'cpf']
+            nome = forms.cleaned_data['nome']
+            data_nascimento = forms.cleaned_data['data_nascimento']
+            endereco = forms.cleaned_data['endereco']
+            cpf = forms.cleaned_data['cpf']
+
+            search = Candidato.objects.get(cpf=cpf)
+
+            if not search:
+
+                Candidato.objects.create(nome=nome, data_nascimento=data_nascimento, endereco=endereco, cpf=cpf)
+                messages.success(request, 'Candidato cadastrado')
+
+            else:
+                messages.error(request, "Candidato já existe")
+
+        else:
+            messages.warning(request, 'Formulário inválido')
 
         return render(request, "cadastro_candidato.html")
 

@@ -22,4 +22,31 @@ class CandidatoForm(ModelForm):
             'data_nascimento': forms.DateInput(format=('%m/%d/%Y'),
                                              attrs={'class': 'form-control', 'placeholder': 'Data de Nascimento',
                                                     'type': 'date'}),}
+class EleicaoForm(ModelForm):
 
+    def __int__(self, *args, **kwargs):
+        super(EleicaoForm, self).__int__(*args, **kwargs)
+        self.fields['nome'].widget.attrs.update({'placeholder':"Digite o nome do Pleito", 'class':('form-control')})
+        self.fields['data_inicial'].widget.attrs.update(
+            {'placeholder': "Data de inicio", 'class': ('form-control')})
+        self.fields['data_final'].widget.attrs.update(
+            {'placeholder': "Data de finalização", 'class': ('form-control')})
+
+    class Meta:
+        model = Eleicao
+        fields = ["nome", "data_inicial", "data_final"]
+        widgets = {
+            'data_inicial': forms.DateInput(format=('%m/%d/%Y'),
+                                             attrs={'class': 'form-control', 'placeholder': 'Data de inicio',
+                                                    'type': 'date'}),
+            'data_final': forms.DateInput(format=('%m/%d/%Y'),
+                                          attrs={'class': 'form-control', 'placeholder': 'Data de fim',
+                                                    'type': 'date'}
+                                                                )}
+
+        #
+        # nome = models.CharField(verbose_name="Nome da Eleição", max_length=80)
+        # data_inicial = models.DateField(verbose_name="Data Inicial")
+        # data_final = models.DateField(verbose_name="Data Final")
+        # candidatos = models.ManyToManyField(Candidato)
+        # _total_candidatos = None

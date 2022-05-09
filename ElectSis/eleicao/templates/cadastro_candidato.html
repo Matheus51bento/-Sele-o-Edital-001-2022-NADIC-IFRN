@@ -4,14 +4,34 @@
 
 {% block links %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}">
 
 {% endblock %}
 
 {% block content %}
 
-<div class="auth-content col-12 col-sm-8 col-md-6 col-lg-4 p-2">
-    <form method="POST">
+    {% if messages %}
+        <div class="messages " data-dismiss="alert" style="align-items: center; font-size: 0.9em;">
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    <div class="alert justify-content-between" role="alert" style="background-color: #179A51;">
+                        {{ message }}
+                    </div>
+                {% elif message.tags == 'warning' %}
+                    <div class="alert alert-warning" role="alert">
+                        {{ message }}
+                    </div>
+                {% elif message.tags == 'error' %}
+                    <div class="alert" role="alert" style="background-color: #E91C2B;">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="auth-content col-12 col-sm-8 col-md-6 col-lg-4 p-2">
+        <form method="POST">
 
             {% csrf_token %}
 
@@ -60,35 +80,8 @@
             <div class="d-grid gap-2">
                 <button class="btn btn-primary" type="submit">Cadastrar</button>
             </div>
-        <!--        {% csrf_token %}-->
-        <!--        <h3>Cadastro Candidato</h3>-->
-        <!--       {% for field in form %}-->
-        <!--        <div class="fieldWrapper">-->
-        <!--            <div class="error-messages">-->
-        <!--                {{ field.errors }}-->
-        <!--            </div>-->
-        <!--            <div class="form-group">-->
-        <!--                {{ field }}-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--        {% endfor %}-->
 
-
-        <!--        {% for field in formMore %}-->
-        <!--        <div class="fieldWrapper">-->
-        <!--            <div class="error-messages">-->
-        <!--                {{ field.errors }}-->
-        <!--            </div>-->
-        <!--            <div class="form-group">-->
-        <!--                {{ field }}-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--        {% endfor %}-->
-
-        <!--        <div class="d-grid gap-2">-->
-        <!--            <button class="btn btn-primary" type="submit">Cadastrar</button>-->
-        <!--        </div>-->
-    </form>
-</div>
+        </form>
+    </div>
 
 {% endblock %}
