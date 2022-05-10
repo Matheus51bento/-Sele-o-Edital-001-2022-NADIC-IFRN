@@ -13,9 +13,12 @@ class Candidato(models.Model):
     data_nascimento = models.DateField(verbose_name="Data de Nascimento")
     endereco = models.CharField(verbose_name="Endereço", max_length=255, null=False)
 
+    def __str__(self):
+        return "{}".format(self.nome)
+
 class Eleicao(models.Model):
 
-    nome = models.CharField(verbose_name="Nome da Eleição", max_length=80)
+    nome = models.CharField(verbose_name="Nome da Eleição", max_length=80, unique=True)
     data_inicial = models.DateField(verbose_name="Data Inicial")
     data_final = models.DateField(verbose_name="Data Final")
     candidatos = models.ManyToManyField(Candidato, blank=True)

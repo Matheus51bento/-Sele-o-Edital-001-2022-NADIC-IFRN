@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import CandidatoForm, EleicaoForm
 from .models import Candidato, Eleicao
 from django.contrib import messages
+from datetime import datetime
 
 # Create your views here.
 
@@ -21,8 +22,28 @@ def cad_eleicao(request):
 
             if len(lis_candidatos) == qtd:
 
-                candidatos_form = candidatos.filter(cpf__in=lis_candidatos)
-                print(candidatos_form)
+                nome = request.POST['nome']
+
+                if not len(Eleicao.objects.filter(nome=nome)):
+
+                    candidatos_form = candidatos.filter(cpf__in=lis_candidatos)
+
+                    data_final = datetime.strptime(request.POST['data_final'], '%Y-%m-%d').date()
+                    data_inicial = datetime.strptime(request.POST['data_inicial'], '%Y-%m-%d').date()
+
+                    if data_inicial > data_final or data_inicial == data_final:
+
+                        messages.error(request, "Selecione um período válido")
+
+                    else:
+
+                        eleicao = Eleicao(nome=nome, data_inicial=data_inicial, data_final=data_final)
+                        eleicao.save()
+                        for i in range(len(candidatos_form)):
+                            eleicao.candidatos.add(candidatos_form[i])
+
+                else:
+                    messages.error(request, "Já existe um pleito com esse nome")
 
             else:
                 messages.error(request, "A quantidade de candidatos está incorreta")
