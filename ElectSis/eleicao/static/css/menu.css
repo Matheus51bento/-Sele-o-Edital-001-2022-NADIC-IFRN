@@ -15,6 +15,11 @@
     color: #EDE6DB;
 }
 
+table, th, td {
+    padding: 10px;
+  border: 1px solid black;
+}
+
 .card-body > a:hover{
 
     text-decoration: none;

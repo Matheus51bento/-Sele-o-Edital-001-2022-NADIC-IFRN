@@ -3,11 +3,41 @@ from .forms import CandidatoForm, EleicaoForm
 from .models import Candidato, Eleicao
 from django.contrib import messages
 from datetime import datetime
+from datetime import date
 
 # Create your views here.
 
 def index(request):
     return render(request, "menu.html")
+
+def pleitos_view(request):
+
+    eleicoes = Eleicao.objects.all()
+
+    hoje = date.today()
+
+    cadastradas = []
+
+    finalizadas = []
+
+    em_andamento = []
+
+    for pleito in range(len(eleicoes)):
+
+        if eleicoes[pleito].data_inicial < hoje:
+
+            cadastradas.append(eleicoes[pleito])
+
+        elif eleicoes[pleito].data_final > hoje:
+
+            em_andamento.append(eleicoes[pleito])
+
+        else:
+
+            finalizadas.append(eleicoes[pleito])
+
+
+    return render(request, "list_pleitos.html", {'cadastradas': cadastradas, 'andamento': em_andamento, 'finalizadas': finalizadas})
 
 def cad_eleicao(request):
 
