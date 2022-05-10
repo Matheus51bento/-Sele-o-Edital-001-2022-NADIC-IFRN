@@ -10,6 +10,10 @@ from datetime import date
 def index(request):
     return render(request, "menu.html")
 
+def voto_view(request, id):
+
+    return render(request, "voto.html")
+
 def pleitos_view(request):
 
     eleicoes = Eleicao.objects.all()
@@ -35,7 +39,6 @@ def pleitos_view(request):
         else:
 
             finalizadas.append(eleicoes[pleito])
-
 
     return render(request, "list_pleitos.html", {'cadastradas': cadastradas, 'andamento': em_andamento, 'finalizadas': finalizadas})
 

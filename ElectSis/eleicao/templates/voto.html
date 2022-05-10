@@ -1,0 +1,32 @@
+{% extends "base_eleicao.html" %}
+
+{% load static %}
+
+{% block links %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="auth-content col-12 col-sm-8 col-md-6 col-lg-4 p-2">
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="fieldWrapper">
+                <label>Escolha um candiato</label>
+                <div class="form-group">
+                    <input type="radio" id="contactChoice1"
+                           name="contact" value="email">
+                    <label for="contactChoice1">Email</label>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+{% endblock %}

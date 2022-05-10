@@ -69,7 +69,7 @@
                         <td>{{ eleicao.nome }}</td>
                         <td>{{ eleicao.data_inicial }}</td>
                         <td>{{ eleicao.data_final }}</td>
-                        <td><a class="btn btn-secondary"><span style="vertical-align: top;">Votar</span><span
+                        <td><a href="{% url 'votar' eleicao.pk %}" class="btn btn-secondary"><span style="vertical-align: top;">Votar</span><span
                                 class="material-icons" style="margin-left: 10px;">&#xe175;</span></a></td>
 
 

@@ -26,3 +26,10 @@ class Eleicao(models.Model):
 
     def __str__(self):
         return '{}'.format(self.nome)
+
+
+class Voto(models.Model):
+
+    pleito = models.ForeignKey(Eleicao, on_delete=models.CASCADE, default='')
+    candidato = models.ForeignKey(Candidato, on_delete=models.CASCADE, default='')
+    eleitor = CPFField('cpf', default='000.000.000-00')
