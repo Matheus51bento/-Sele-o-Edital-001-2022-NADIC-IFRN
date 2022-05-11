@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from .forms import CandidatoForm, EleicaoForm
-from .models import Candidato, Eleicao
+from .models import Candidato, Eleicao, Voto
 from django.contrib import messages
 from datetime import datetime
 from datetime import date
+from django.core.exceptions import PermissionDenied
+from django.http.response import HttpResponseRedirect
 
 # Create your views here.
 
@@ -12,7 +14,44 @@ def index(request):
 
 def voto_view(request, id):
 
-    return render(request, "voto.html")
+    eleicao = Eleicao.objects.get(pk=id)
+
+    candidatos = eleicao.candidatos.all()
+
+    print(eleicao.get_status())
+
+    if eleicao.get_status() is "andamento":
+
+        if request.method == "POST":
+
+            # confirm_vote = Voto.objects.filter(eleitor=request.POST["cpf"], pleito=eleicao)
+            cpfs =request.POST["cpf"]
+            cpfs = cpfs.replace('-','')
+            cpfs = cpfs.replace('.','')
+            confirm_vote = Voto.objects.filter(eleitor=cpfs, pleito=eleicao)
+
+            if not len(confirm_vote):
+
+                candidato = Candidato.objects.get(cpf=request.POST["candidato"])
+                vote = Voto(pleito=eleicao, candidato=candidato, eleitor=cpfs)
+                vote.save()
+
+                return render(request, "menu.html")
+
+            else:
+
+                messages.warning(request, "Você já votou nesse pleito")
+
+                return HttpResponseRedirect(request.path_info)
+
+        else:
+
+            return render(request, "voto.html", {'candidatos': candidatos})
+
+    else:
+
+        raise PermissionDenied
+
 
 def pleitos_view(request):
 
@@ -28,7 +67,7 @@ def pleitos_view(request):
 
     for pleito in range(len(eleicoes)):
 
-        if eleicoes[pleito].data_inicial < hoje:
+        if eleicoes[pleito].data_inicial > hoje:
 
             cadastradas.append(eleicoes[pleito])
 

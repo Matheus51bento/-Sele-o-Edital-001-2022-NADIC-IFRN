@@ -4,6 +4,7 @@ from django.db import models
 
 from django.db import models
 from cpf_field.models import CPFField
+from datetime import date
 
 
 class Candidato(models.Model):
@@ -24,6 +25,20 @@ class Eleicao(models.Model):
     candidatos = models.ManyToManyField(Candidato, blank=True)
     _total_candidatos = None
 
+    def get_status(self):
+        hoje = date.today()
+        if self.data_inicial > hoje:
+
+            return "em aberto"
+
+        elif self.data_final > hoje:
+
+            return "andamento"
+
+        else:
+
+            return "finalizada"
+
     def __str__(self):
         return '{}'.format(self.nome)
 
@@ -33,3 +48,6 @@ class Voto(models.Model):
     pleito = models.ForeignKey(Eleicao, on_delete=models.CASCADE, default='')
     candidato = models.ForeignKey(Candidato, on_delete=models.CASCADE, default='')
     eleitor = CPFField('cpf', default='000.000.000-00')
+
+    def __str__(self):
+        return "{}|{}".format(self.pleito, self.eleitor)

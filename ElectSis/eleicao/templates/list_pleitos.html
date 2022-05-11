@@ -12,112 +12,112 @@
 
     {% if cadastradas %}
 
-    <div class="d-flex  justify-content-center m-2" style="width: 100%; margin-top: 30px">
+        <div class="d-flex  justify-content-center m-2" style="width: 100%; margin-top: 30px">
 
 
-        <div class="row">
+            <div class="row">
 
-            <label style="width: 100%; text-align: center">Cadastradas</label> <br>
-            <table>
-                <tr>
+                <label style="width: 100%; text-align: center">Cadastradas</label> <br>
+                <table style="text-align: center; margin-bottom: 15px;">
+                    <tr>
 
-                    <th>Nome</th>
-                    <th>Data de inicio</th>
-                    <th>Data de término</th>
-                    <th>Ações</th>
+                        <th>Nome</th>
+                        <th>Data de inicio</th>
+                        <th>Data de término</th>
 
-                </tr>
-                <tr>
-                    {% for eleicao in cadastradas %}
-
-
-                        <td>{{ eleicao.nome }}</td>
-                        <td>{{ eleicao.data_inicial }}</td>
-                        <td>{{ eleicao.data_final }}</td>
+                    </tr>
+                    <tr>
+                        {% for eleicao in cadastradas %}
 
 
-                    {% endfor %}
+                            <td>{{ eleicao.nome }}</td>
+                            <td>{{ eleicao.data_inicial }}</td>
+                            <td>{{ eleicao.data_final }}</td>
 
-                </tr>
-            </table>
+
+                        {% endfor %}
+
+                    </tr>
+                </table>
+
+            </div>
 
         </div>
-
-    </div>
 
     {% endif %}
 
     {% if andamento %}
 
-    <div class="d-flex  justify-content-center m-2" style="width: 100%; margin-top: 30px">
+        <div class="d-flex  justify-content-center m-2" style="width: 100%; margin-top: 30px">
 
-        <div class="row">
-            <label style="width: 100%; text-align: center">Em Andamento</label> <br>
-            <table style="text-align: center">
-                <tr>
+            <div class="row">
+                <label style="width: 100%; text-align: center">Em Andamento</label> <br>
+                {% for eleicao in andamento %}
+                    <table style="text-align: center; margin-bottom: 15px;">
+                        <tr>
 
-                    <th>Nome</th>
-                    <th>Data de inicio</th>
-                    <th>Data de término</th>
-                    <th>Ações</th>
+                            <th>Nome</th>
+                            <th>Data de inicio</th>
+                            <th>Data de término</th>
+                            <th>Ações</th>
 
-                </tr>
-                <tr>
-                    {% for eleicao in andamento %}
-
-
-                        <td>{{ eleicao.nome }}</td>
-                        <td>{{ eleicao.data_inicial }}</td>
-                        <td>{{ eleicao.data_final }}</td>
-                        <td><a href="{% url 'votar' eleicao.pk %}" class="btn btn-secondary"><span style="vertical-align: top;">Votar</span><span
-                                class="material-icons" style="margin-left: 10px;">&#xe175;</span></a></td>
+                        </tr>
+                        <tr>
 
 
-                    {% endfor %}
+                            <td>{{ eleicao.nome }}</td>
+                            <td>{{ eleicao.data_inicial }}</td>
+                            <td>{{ eleicao.data_final }}</td>
+                            <td><a href="{% url 'votar' eleicao.pk %}" class="btn btn-secondary"><span
+                                    style="vertical-align: top;">Votar</span><span
+                                    class="material-icons" style="margin-left: 10px;">&#xe175;</span></a></td>
 
-                </tr>
-            </table>
+
+                        </tr>
+                    </table>
+
+                {% endfor %}
+
+            </div>
 
         </div>
-
-    </div>
 
     {% endif %}
 
     {% if finalizadas %}
 
-    <div class="d-flex  justify-content-center m-2" style="width: 100%; margin-top: 30px">
+        <div class="d-flex  justify-content-center m-2" style="width: 100%; margin-top: 30px">
 
 
-        <div class="row">
+            <div class="row">
 
-            <label style="width: 100%; text-align: center">Finalizadas</label> <br>
-            <table>
-                <tr>
+                <label style="width: 100%; text-align: center">Finalizadas</label> <br>
+                <table style="text-align: center; margin-bottom: 15px;">
+                    <tr>
 
-                    <th>Nome</th>
-                    <th>Data de inicio</th>
-                    <th>Data de término</th>
-                    <th>Ações</th>
+                        <th>Nome</th>
+                        <th>Data de inicio</th>
+                        <th>Data de término</th>
+                        <th>Ações</th>
 
-                </tr>
-                <tr>
-                    {% for eleicao in finalizadas %}
-
-
-                        <td>{{ eleicao.nome }}</td>
-                        <td>{{ eleicao.data_inicial }}</td>
-                        <td>{{ eleicao.data_final }}</td>
+                    </tr>
+                    <tr>
+                        {% for eleicao in finalizadas %}
 
 
-                    {% endfor %}
+                            <td>{{ eleicao.nome }}</td>
+                            <td>{{ eleicao.data_inicial }}</td>
+                            <td>{{ eleicao.data_final }}</td>
 
-                </tr>
-            </table>
+
+                        {% endfor %}
+
+                    </tr>
+                </table>
+
+            </div>
 
         </div>
-
-    </div>
 
     {% endif %}
 

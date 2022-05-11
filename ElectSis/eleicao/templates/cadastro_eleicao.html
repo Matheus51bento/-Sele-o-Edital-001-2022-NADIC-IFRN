@@ -41,7 +41,8 @@
                 </div>
                 <label>Nome do Pleito</label>
                 <div class="form-group">
-                    <input type="text" name="nome" maxlength="80" placeholder="Digite o nome do Pleito" required="" id="id_nome">
+                    <input type="text" name="nome" maxlength="80" placeholder="Digite o nome do Pleito" required=""
+                           id="id_nome">
                 </div>
             </div>
 
@@ -92,7 +93,7 @@
                     <div class="form-group">
 
                         <fieldset>
-                        <hr>
+                            <hr>
 
                             {% for candidato in candidatos %}
 
@@ -108,6 +109,8 @@
                     </div>
                 </div>
             </div>
+            <p style="font-size: 12px; padding-top: 5px;">Não encontrou o candidato? <a
+                    href="{% url 'cadastro candidato' %}"> Cadastre</a></p>
 
             <br>
 
@@ -116,8 +119,6 @@
             </div>
 
         </form>
-
-        <p style="font-size: 12px; padding-top: 5px;">Não encontrou o candidato? <a href="{% url 'cadastro candidato' %}" > Cadastre</a></p>
 
     </div>
 
