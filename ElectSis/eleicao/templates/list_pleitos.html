@@ -108,6 +108,9 @@
                             <td>{{ eleicao.nome }}</td>
                             <td>{{ eleicao.data_inicial }}</td>
                             <td>{{ eleicao.data_final }}</td>
+                            <td><a href="{% url 'resultado' eleicao.pk %}" class="btn btn-secondary"><span
+                                    style="vertical-align: top;">Resultado</span><span
+                                    class="material-icons" style="margin-left: 10px;">&#xf20c;</span></a></td>
 
 
                         {% endfor %}
@@ -120,7 +123,5 @@
         </div>
 
     {% endif %}
-
-
 
 {% endblock %}

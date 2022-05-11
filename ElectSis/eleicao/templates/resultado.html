@@ -1,0 +1,32 @@
+{% extends "base_eleicao.html" %}
+
+{% load static %}
+
+{% block links %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+    <p>Vencedor: {{ vencedor }}</p>
+
+    <table>
+
+        <tr>
+            <th>Candidato</th>
+            <th>Total de Votos</th>
+        </tr>
+
+        {% for candidato, votos in candidatos.items %}
+            <tr>
+                <td>{{ candidato }}</td>
+                <td>{{ votos }}</td>
+            </tr>
+        {% endfor %}
+
+
+    </table>
+
+{% endblock %}

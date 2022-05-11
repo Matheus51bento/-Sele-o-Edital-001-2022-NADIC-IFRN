@@ -164,3 +164,29 @@ def cad_candidadto(request):
         form = CandidatoForm
 
         return render(request, "cadastro_candidato.html", {'form': form})
+
+def resultados_view(request, id):
+
+    eleicao = Eleicao.objects.get(pk=id)
+
+    if eleicao.get_status() is "finalizada":
+
+        votos = Voto.objects.filter(pleito=eleicao)
+
+        candidatos = eleicao.candidatos.all()
+
+        resultado = {}
+        for i in range(len(candidatos)):
+            resultado[candidatos[i].nome] = len(votos.filter(candidato=candidatos[i]))
+
+        sort_orders = sorted(resultado.items(), key=lambda x: x[1], reverse=True)
+
+        vencedor = sort_orders[0][0]
+        final = dict(sort_orders)
+        print(final)
+
+        return render(request, "resultado.html", {'vencedor': vencedor, 'candidatos':final})
+
+    else:
+
+        raise PermissionDenied

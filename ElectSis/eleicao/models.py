@@ -40,7 +40,7 @@ class Eleicao(models.Model):
             return "finalizada"
 
     def __str__(self):
-        return '{}'.format(self.nome)
+        return '{}/{}'.format(self.nome, self.pk)
 
 
 class Voto(models.Model):

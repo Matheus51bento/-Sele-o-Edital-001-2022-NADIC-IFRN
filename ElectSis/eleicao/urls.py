@@ -7,6 +7,7 @@ urlpatterns = [
     path('cadastro/eleicoes/', cad_eleicao, name="cadastro eleicao"),
     path('cadastro/candidato', cad_candidadto, name="cadastro candidato"),
     path('pleitos', pleitos_view, name='pleitos'),
-    path('votacao/<int:id>', voto_view, name="votar")
+    path('votacao/<int:id>', voto_view, name="votar"),
+    path('resultado/<int:id>', resultados_view, name="resultado")
 
 ]
