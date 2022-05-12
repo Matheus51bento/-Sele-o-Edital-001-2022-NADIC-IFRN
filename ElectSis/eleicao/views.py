@@ -6,6 +6,7 @@ from datetime import datetime
 from datetime import date
 from django.core.exceptions import PermissionDenied
 from django.http.response import HttpResponseRedirect
+from random import randint
 
 # Create your views here.
 
@@ -185,7 +186,14 @@ def resultados_view(request, id):
         final = dict(sort_orders)
         print(final)
 
-        return render(request, "resultado.html", {'vencedor': vencedor, 'candidatos':final})
+        dados = list(final.values())
+
+        colors = []
+
+        for i in range(len(dados)):
+            colors.append('#%06X' % randint(0, 0xFFFFFF))
+
+        return render(request, "resultado.html", {'vencedor': vencedor, 'candidatos': final, 'dados':dados, 'cores': colors})
 
     else:
 

@@ -29,4 +29,86 @@
 
     </table>
 
+    <div class="carteira-card" style="width: 300px;">
+
+        <div id="chart" style="width:100%; height:200px; border-radius: 16px">
+
+        </div>
+
+        {% for key, value in candidatos.items %}
+            <div class="row" style="justify-content: center">
+                <div class="col-6">
+                    <span>{{ key }}</span>
+                </div>
+                <div class="col-2">
+                    <div style="background-color: {{ value }}; border-radius: 8px; height: 16px; width: 16px"></div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
+
+{% endblock %}
+
+{% block javascript %}
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script>
+        {#const cores = "{{ cores }}".replaceAll(", ", "").split("&#x27;")#}
+        {##}
+        {#for (let i = 0; i < cores.length; i = i + 1) {#}
+        {#    if (cores[i] === "" || cores[i] === "[" || cores[i] === "]") {#}
+        {#        cores.splice(i, 1);#}
+        {#    }#}
+        {#}#}
+        {##}
+        {#Highcharts.setOptions({#}
+        {#    // colors: ["(220, 168, 47)"]#}
+        {#    colors: cores#}
+        {#});#}
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var chart1 = new Highcharts.Chart({
+                chart: {
+                    type: 'pie',
+                    renderTo: 'chart'
+                },
+
+                credits: {
+                    enabled: false
+                },
+
+                title: {
+                    enabled: false,
+                    verticalAlign: 'middle',
+                    floating: true,
+                    text: ''
+                },
+
+                plotOptions: {
+                    pie: {
+                        innerSize: '80%'
+                    },
+                    series: {
+                        enableMouseTracking: false,
+                    },
+                },
+                slicedOffset: 0,
+
+                series: [{
+                    name: "",
+                    data: {{ dados }},
+                    dataLabels: {
+                        enabled: false,
+                        connectorWidth: 0,
+                        connectorPadding: -10
+                    },
+                }]
+            });
+        });
+
+    </script>
+
+
 {% endblock %}
