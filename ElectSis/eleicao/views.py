@@ -48,7 +48,7 @@ def voto_view(request, id):
 
         else:
 
-            return render(request, "voto.html", {'candidatos': candidatos})
+            return render(request, "voto.html", {'candidatos': candidatos, 'titulo': eleicao.nome})
 
     else:
 
@@ -195,8 +195,6 @@ def resultados_view(request, id):
         for i in range(len(dados)):
             colors.append('#%06X' % randint(0, 0xFFFFFF))
             dados_coloridos[chaves[i]] = colors[i]
-
-        print(dados_coloridos)
 
         return render(request, "resultado.html",
                       {'vencedor': vencedor, 'chaves': chaves, 'dados_coloridos': dados_coloridos, 'candidatos': final,

@@ -10,12 +10,14 @@
 
 {% block content %}
 
+
+
     {% if cadastradas %}
 
-        <div class="d-flex  justify-content-center m-2" style="width: 100%; margin-top: 30px">
+        <div class="d-flex  justify-content-center m-2" style="width: 100%; margin: 30px auto;">
 
 
-            <div class="row">
+            <div class="row" style="width: 70%;">
 
                 <label style="width: 100%; text-align: center">Cadastradas</label> <br>
                 <table style="text-align: center; margin-bottom: 15px;">
@@ -50,7 +52,7 @@
 
         <div class="d-flex  justify-content-center m-2" style="width: 100%; margin-top: 30px">
 
-            <div class="row">
+            <div class="row" style="width: 70%;">
                 <label style="width: 100%; text-align: center">Em Andamento</label> <br>
                 {% for eleicao in andamento %}
                     <table style="text-align: center; margin-bottom: 15px;">
@@ -86,10 +88,9 @@
 
     {% if finalizadas %}
 
-        <div class="d-flex  justify-content-center m-2" style="width: 100%; margin-top: 30px">
+        <div class="d-flex justify-content-center m-2" style="width: 100%; margin-top: 30px">
 
-
-            <div class="row">
+            <div class="row" style="width: 70%;">
 
                 <label style="width: 100%; text-align: center">Finalizadas</label> <br>
                 <table style="text-align: center; margin-bottom: 15px;">
@@ -123,5 +124,6 @@
         </div>
 
     {% endif %}
+
 
 {% endblock %}
