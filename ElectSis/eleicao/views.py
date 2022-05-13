@@ -8,13 +8,14 @@ from django.core.exceptions import PermissionDenied
 from django.http.response import HttpResponseRedirect
 from random import randint
 
+
 # Create your views here.
 
 def index(request):
     return render(request, "menu.html")
 
-def voto_view(request, id):
 
+def voto_view(request, id):
     eleicao = Eleicao.objects.get(pk=id)
 
     candidatos = eleicao.candidatos.all()
@@ -26,9 +27,9 @@ def voto_view(request, id):
         if request.method == "POST":
 
             # confirm_vote = Voto.objects.filter(eleitor=request.POST["cpf"], pleito=eleicao)
-            cpfs =request.POST["cpf"]
-            cpfs = cpfs.replace('-','')
-            cpfs = cpfs.replace('.','')
+            cpfs = request.POST["cpf"]
+            cpfs = cpfs.replace('-', '')
+            cpfs = cpfs.replace('.', '')
             confirm_vote = Voto.objects.filter(eleitor=cpfs, pleito=eleicao)
 
             if not len(confirm_vote):
@@ -55,7 +56,6 @@ def voto_view(request, id):
 
 
 def pleitos_view(request):
-
     eleicoes = Eleicao.objects.all()
 
     hoje = date.today()
@@ -80,10 +80,11 @@ def pleitos_view(request):
 
             finalizadas.append(eleicoes[pleito])
 
-    return render(request, "list_pleitos.html", {'cadastradas': cadastradas, 'andamento': em_andamento, 'finalizadas': finalizadas})
+    return render(request, "list_pleitos.html",
+                  {'cadastradas': cadastradas, 'andamento': em_andamento, 'finalizadas': finalizadas})
+
 
 def cad_eleicao(request):
-
     candidatos = Candidato.objects.all()
 
     if request.method == 'POST':
@@ -124,16 +125,15 @@ def cad_eleicao(request):
         else:
             messages.error(request, "Selecione os candidatos")
 
-
-        return render(request, "cadastro_eleicao.html", {'candidatos':candidatos})
+        return render(request, "cadastro_eleicao.html", {'candidatos': candidatos})
 
     else:
         form = EleicaoForm()
 
-        return render(request, "cadastro_eleicao.html", {'form':form, 'candidatos':candidatos   })
+        return render(request, "cadastro_eleicao.html", {'form': form, 'candidatos': candidatos})
+
 
 def cad_candidadto(request):
-
     if request.method == "POST":
 
         forms = CandidatoForm(request.POST)
@@ -166,8 +166,8 @@ def cad_candidadto(request):
 
         return render(request, "cadastro_candidato.html", {'form': form})
 
-def resultados_view(request, id):
 
+def resultados_view(request, id):
     eleicao = Eleicao.objects.get(pk=id)
 
     if eleicao.get_status() is "finalizada":
@@ -184,16 +184,23 @@ def resultados_view(request, id):
 
         vencedor = sort_orders[0][0]
         final = dict(sort_orders)
-        print(final)
+        # print(final)
 
         dados = list(final.values())
 
         colors = []
+        chaves = list(final.keys())
+        dados_coloridos = {}
 
         for i in range(len(dados)):
             colors.append('#%06X' % randint(0, 0xFFFFFF))
+            dados_coloridos[chaves[i]] = colors[i]
 
-        return render(request, "resultado.html", {'vencedor': vencedor, 'candidatos': final, 'dados':dados, 'cores': colors})
+        print(dados_coloridos)
+
+        return render(request, "resultado.html",
+                      {'vencedor': vencedor, 'chaves': chaves, 'dados_coloridos': dados_coloridos, 'candidatos': final,
+                       'dados': dados, 'cores': colors, 'titulo': eleicao.nome})
 
     else:
 
